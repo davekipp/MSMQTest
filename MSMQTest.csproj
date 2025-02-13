@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+
+    <!-- Single-file publish settings -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+    <!-- This attempts to bundle native libraries inside the single exe -->
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+
+    <!-- Optional: combine additional config files into the single exe -->
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+
+    <!-- You can also embed .runtimeconfig.json into the EXE by using:
+       <IncludeRuntimeConfigFileInSingleFile>true</IncludeRuntimeConfigFileInSingleFile> 
+       (Supported in .NET 7+, but see next note below.) -->
+
+    <!-- By default, "Trimmed" can break WPF apps due to reflection usage. 
+       So you might leave it as false. -->
+    <PublishTrimmed>false</PublishTrimmed>
+    
+    <!-- In Release mode, remove debug symbols so no .pdb is generated. -->
+    <!--
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    -->
+    
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>Full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSMQ.Messaging" Version="1.0.4" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="9.0.2" />
+  </ItemGroup>
+  
+</Project>
