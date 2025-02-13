@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MSMQTest"
         mc:Ignorable="d"
-        Title="MSMQ Test Tool" Height="450" Width="800"
+        Title="MSMQ Test Tool" Height="450" Width="900"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
     
     <Grid Background="LightYellow">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -31,25 +31,29 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Content="Local IP" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                    <TextBox Name="txtLocalIPAddress" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
+                    <Label Content="Output Queue Name" VerticalContentAlignment="Center" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                    <TextBox Name="txtWriteQueueName" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
 
-                    <Label Content="Local (In) Queue" VerticalContentAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                    <TextBox Name="txtLocalQueue" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
+                    <Label Content="Output To" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    <TextBox Name="txtWriteQueueAddress" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
+                    <TextBlock Text="Use '.' for local PC or IP address for remote PC." FontWeight="Light" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-                    <Label Content="Remote IP" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="2" Grid.Column="0" Margin="5"/>
-                    <TextBox Name="txtRemoteIPAddress" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
+                    <Label Content="Input Queue Name" VerticalContentAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0" Margin="5"/>
+                    <TextBox Name="txtReadQueueName" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
 
-                    <Label Content="Remote (Out) Queue" VerticalContentAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0" Margin="5"/>
-                    <TextBox Name="txtRemoteQueue" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
+                    <Label Content="Input From" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="4" Grid.Column="0" Margin="5"/>
+                    <TextBox Name="txtReadQueueAddress" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="4" Grid.Column="1" Margin="5" TextChanged="OnTextChanged"/>
+                    <TextBlock Text="Use '.' for local PC or IP address for remote PC." FontWeight="Light" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
-                    <Label Content="Message Format" VerticalContentAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="0" Margin="5"/>
-                    <RadioButton Content="XML" Name="rbXML" IsChecked="True" VerticalContentAlignment="Center" GroupName="Formatter" Grid.Row="4" Grid.Column="1" />
-                    <RadioButton Content="Binary" Name="rbBinary" VerticalContentAlignment="Center" GroupName="Formatter" Grid.Row="5" Grid.Column="1" />
-
-                    <Button Content="Connect" Name="btnConnect" Click="OnConnectBtnClick"  IsEnabled="False" VerticalContentAlignment="Center" Grid.Row="6" Grid.Column="1" Margin="6"/>
+                    <Label Content="Message Formatter" VerticalContentAlignment="Center" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="0" Margin="5"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+                        <RadioButton Content="XML" Name="rbXML" IsChecked="True" VerticalContentAlignment="Center" GroupName="Formatter" />
+                        <RadioButton Content="Binary" Name="rbBinary" VerticalContentAlignment="Center" GroupName="Formatter" />
+                    </StackPanel>
+                    <Button Content="Connect" Name="btnConnect" Click="OnConnectBtnClick"  IsEnabled="False" VerticalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Margin="6"/>
                 </Grid>
             </Border>
         </StackPanel>

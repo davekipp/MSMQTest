@@ -35,11 +35,11 @@ namespace MSMQTest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtLocalIPAddress.Text = ".";
-            txtLocalQueue.Text = "msmq_test_local_queue";
+            txtWriteQueueAddress.Text = ".";
+            txtWriteQueueName.Text = "msmq_test_local_queue";
 
-            txtRemoteIPAddress.Text = ".";
-            txtRemoteQueue.Text = "msmq_test_local_queue";
+            txtReadQueueAddress.Text = ".";
+            txtReadQueueName.Text = "msmq_test_local_queue";
 
             LogLocalIPAddress();
 
@@ -59,10 +59,10 @@ namespace MSMQTest
         private void OnTextChanged(object? sender, TextChangedEventArgs? e)
         {
             btnConnect.IsEnabled =
-                !string.IsNullOrEmpty(txtLocalIPAddress.Text)
-                && !string.IsNullOrEmpty(txtLocalQueue.Text)
-                && !string.IsNullOrEmpty(txtRemoteIPAddress.Text)
-                && !string.IsNullOrEmpty(txtRemoteQueue.Text);
+                !string.IsNullOrEmpty(txtWriteQueueAddress.Text)
+                && !string.IsNullOrEmpty(txtWriteQueueName.Text)
+                && !string.IsNullOrEmpty(txtReadQueueAddress.Text)
+                && !string.IsNullOrEmpty(txtReadQueueName.Text);
 
             txtMessage.IsEnabled = m_isConnected;
 
@@ -105,9 +105,9 @@ namespace MSMQTest
         private void Connect()
         {
             Log("--- Connecting -------------------------------------------");
-            m_localQueue = OpenQueue("local-queue", txtLocalIPAddress.Text, txtLocalQueue.Text);
+            m_localQueue = OpenQueue("local-queue", txtWriteQueueAddress.Text, txtWriteQueueName.Text);
             Log("");
-            m_remoteQueue = OpenQueue("remote-queue", txtRemoteIPAddress.Text, txtRemoteQueue.Text);
+            m_remoteQueue = OpenQueue("remote-queue", txtReadQueueAddress.Text, txtReadQueueName.Text);
 
             if (m_localQueue != null && m_remoteQueue != null)
             {
